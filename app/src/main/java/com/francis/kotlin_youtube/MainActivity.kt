@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchJson() {
         println("Attempting to fetch json file ")
-
         val url = "https://api.letsbuildthatapp.com/youtube/home_feed"
         val request = Request.Builder().url(url).build()
         val client = OkHttpClient()
