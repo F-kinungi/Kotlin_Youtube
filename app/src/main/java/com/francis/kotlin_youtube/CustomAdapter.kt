@@ -28,20 +28,30 @@ val view = LayoutInflater.from(p0.context).inflate(R.layout.video_rows, p0, fals
         val channelProfileImage = holder.itemView.imageView_profile
         Picasso.get().load(videos.channel.profileImageUrl).into(channelProfileImage)
 
+        holder.video = videos
+
     }
 }
-class CustomViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
+class CustomViewHolder(itemView:View, var video:Video? = null):RecyclerView.ViewHolder(itemView) {
+
+    companion object {
+        val VIDEO_KEY_TITLE = "VIDEO TITLE"
+        val VIDEO_ID_KEY= "VIDEO ID"
+    }
     init {
         itemView.setOnClickListener {
 
             val intent = Intent(itemView.context, CourseDetailActivity::class.java)
+            intent.putExtra(VIDEO_KEY_TITLE, video?.name)
+            intent.putExtra(VIDEO_ID_KEY, video?.id)
             itemView.context.startActivity(intent)
+
         }
     }
 
 }
 
-//CustomViewHolder is used to cache view objects inorder to saf memory
+//CustomViewHolder is used to cache view objects inorder to safe memory
 
 //The adapter(CustomAdapter) create new items inform of viewHolder, populate the viewHolders with data
 // and return information about the data
